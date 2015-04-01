@@ -13,22 +13,19 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var stopPlaying: UIButton!
     var avPlayer:AVAudioPlayer!
+    var audioEngine:AVAudioEngine!
+    var audioFile:AVAudioFile!
+    var receivedAudio:RecordedAudio!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         stopPlaying.hidden = true
-        if var audioPath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
-        {
-            var pathAsUrl = NSURL(fileURLWithPath: audioPath)
-            avPlayer = AVAudioPlayer(contentsOfURL: pathAsUrl, error: nil)
-            avPlayer.enableRate=true
-            avPlayer.delegate = self
-        }
-        else
-        {
-            println("path is empty")
-        }
-        // Do any additional setup after loading the view.
+        audioEngine = AVAudioEngine()
+        audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
+        var audioPath = receivedAudio.filePathUrl
+        avPlayer = AVAudioPlayer(contentsOfURL: audioPath, error: nil)
+        avPlayer.enableRate=true
+        avPlayer.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +39,14 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func playFastAudio(sender: UIButton) {
         playAudio(1.5)
+    }
+    
+    @IBAction func playChipmunkAudio(sender: UIButton) {
+        playPitchShiftedAudio(1000)
+    }
+
+    @IBAction func playDarthVaderAudio(sender: UIButton) {
+        playPitchShiftedAudio(-1000)
     }
     
     @IBAction func stopAudio(sender: UIButton) {
@@ -62,6 +67,29 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
         println("audio finished playing")
         stopPlaying.hidden = true
     }
+    
+    func playPitchShiftedAudio(shift: Float)
+    {
+        avPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = shift
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }
+    
     
     /*
     // MARK: - Navigation
