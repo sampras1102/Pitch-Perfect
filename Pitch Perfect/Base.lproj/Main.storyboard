@@ -38,7 +38,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="stopAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dU8-B3-mTG"/>
+                                    <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4ZK-Df-yHd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -84,8 +84,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="r7W-b1-lKo"/>
                     <connections>
+                        <outlet property="microphoneSubText" destination="Id5-LH-g7A" id="Nds-Dx-sJV"/>
                         <outlet property="recordButton" destination="ZVo-eH-gxv" id="6i4-Aw-fis"/>
-                        <outlet property="recordingInProgress" destination="Id5-LH-g7A" id="zZS-LV-yLy"/>
                         <outlet property="stopButton" destination="gkW-BK-W0W" id="UdN-29-O73"/>
                         <segue destination="REg-4R-6gu" kind="show" identifier="stopRecording" id="ZVW-gt-Oc5"/>
                     </connections>

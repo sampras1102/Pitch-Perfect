@@ -11,7 +11,6 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     
-    var audioPlayer:AVAudioPlayer! //audio player for slow and fast
     var audioEngine:AVAudioEngine! //audio engine used for chipmunk and darth vader
     var audioFile:AVAudioFile! //audio file object used by audio engine
     var receivedAudio:RecordedAudio! //model class that stores the audio file path and title
@@ -22,8 +21,6 @@ class PlaySoundsViewController: UIViewController {
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
         var audioPath = receivedAudio.filePathUrl
-        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error: nil)
-        audioPlayer.enableRate=true
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,11 +29,11 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func playSlowAudio(sender: UIButton) {
-        playAudio(0.5)
+        playSpeedAdjustedAudio(0.5)
     }
     
     @IBAction func playFastAudio(sender: UIButton) {
-        playAudio(1.5)
+        playSpeedAdjustedAudio(1.5)
     }
     
     @IBAction func playChipmunkAudio(sender: UIButton) {
@@ -52,36 +49,39 @@ class PlaySoundsViewController: UIViewController {
     }
     
     func stopAudioInternal(){
-        audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
     }
     
-    func playAudio(rate: Float)
-    {
-        stopAudioInternal()
-        audioPlayer.currentTime = 0
-        audioPlayer.rate = rate
-        audioPlayer.play()
+    func playPitchShiftedAudio(pitch: Float){
+        playRatePitchShiftedAudio(pitch, rate: 1)
     }
     
-    func playPitchShiftedAudio(pitch: Float)
+    func playSpeedAdjustedAudio(rate: Float){
+        playRatePitchShiftedAudio(0, rate: rate)
+    }
+    
+    func playRatePitchShiftedAudio(pitch: Float, rate: Float)
     {
         stopAudioInternal()
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
-        var changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
+        var pitchRateEffect = AVAudioUnitTimePitch()
+        pitchRateEffect.rate = rate
+        pitchRateEffect.pitch = pitch
+        audioEngine.attachNode(pitchRateEffect)
         
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        audioEngine.connect(audioPlayerNode, to: pitchRateEffect, format: nil)
+        audioEngine.connect(pitchRateEffect, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: {
+            println("audio playback complete")
+        })
         audioEngine.startAndReturnError(nil)
         
+        println("playing audio file \(receivedAudio.title)")
         audioPlayerNode.play()
     }
     
