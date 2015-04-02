@@ -9,23 +9,21 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
+class PlaySoundsViewController: UIViewController {
     
-    @IBOutlet weak var stopPlaying: UIButton!
-    var avPlayer:AVAudioPlayer!
-    var audioEngine:AVAudioEngine!
-    var audioFile:AVAudioFile!
-    var receivedAudio:RecordedAudio!
+    var audioPlayer:AVAudioPlayer! //audio player for slow and fast
+    var audioEngine:AVAudioEngine! //audio engine used for chipmunk and darth vader
+    var audioFile:AVAudioFile! //audio file object used by audio engine
+    var receivedAudio:RecordedAudio! //model class that stores the audio file path and title
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        stopPlaying.hidden = true
+        super.viewDidLoad() // call base implementation first
+
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
         var audioPath = receivedAudio.filePathUrl
-        avPlayer = AVAudioPlayer(contentsOfURL: audioPath, error: nil)
-        avPlayer.enableRate=true
-        avPlayer.delegate = self
+        audioPlayer = AVAudioPlayer(contentsOfURL: audioPath, error: nil)
+        audioPlayer.enableRate=true
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,35 +48,32 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func stopAudio(sender: UIButton) {
-        avPlayer.stop()
-        stopPlaying.hidden = true
+        stopAudioInternal()
+    }
+    
+    func stopAudioInternal(){
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
     
     func playAudio(rate: Float)
     {
-        stopPlaying.hidden = false
-        avPlayer.stop()
-        avPlayer.currentTime = 0
-        avPlayer.rate = rate
-        avPlayer.play()
+        stopAudioInternal()
+        audioPlayer.currentTime = 0
+        audioPlayer.rate = rate
+        audioPlayer.play()
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
-        println("audio finished playing")
-        stopPlaying.hidden = true
-    }
-    
-    func playPitchShiftedAudio(shift: Float)
+    func playPitchShiftedAudio(pitch: Float)
     {
-        avPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAudioInternal()
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
         var changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = shift
+        changePitchEffect.pitch = pitch
         audioEngine.attachNode(changePitchEffect)
         
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
