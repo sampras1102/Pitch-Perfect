@@ -150,17 +150,39 @@
                                     <action selector="playDarthVaderAudio:" destination="REg-4R-6gu" eventType="touchUpInside" id="EEZ-dm-c5t"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgC-dJ-D44">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Distortion">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playDistortedAudio:" destination="REg-4R-6gu" eventType="touchUpInside" id="JuT-rn-4gu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-g6-3gN">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Reverb">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playReverbAudio:" destination="REg-4R-6gu" eventType="touchUpInside" id="5yq-id-YfL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wsA-c1-jsQ" firstAttribute="top" secondItem="gfi-5C-mff" secondAttribute="bottom" constant="50" id="6Pd-r2-O1u"/>
+                            <constraint firstItem="jgC-dJ-D44" firstAttribute="top" secondItem="agl-N8-iOR" secondAttribute="bottom" constant="50" id="6pw-nP-l2n"/>
+                            <constraint firstItem="jgC-dJ-D44" firstAttribute="centerY" secondItem="zNg-g6-3gN" secondAttribute="centerY" id="B67-HA-B8k"/>
                             <constraint firstItem="6NT-me-E1v" firstAttribute="top" secondItem="BX3-nM-fjU" secondAttribute="bottom" constant="30" id="BqA-eu-Sas"/>
-                            <constraint firstItem="agl-N8-iOR" firstAttribute="top" secondItem="wsA-c1-jsQ" secondAttribute="bottom" constant="100" id="Dff-Ui-eJz"/>
+                            <constraint firstItem="agl-N8-iOR" firstAttribute="top" secondItem="wsA-c1-jsQ" secondAttribute="bottom" constant="50" id="Dff-Ui-eJz"/>
                             <constraint firstItem="agl-N8-iOR" firstAttribute="centerX" secondItem="wsA-c1-jsQ" secondAttribute="centerX" id="IT7-Kv-pGO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yfc-eu-4VZ" secondAttribute="trailing" constant="25" id="Xfc-Jm-83G"/>
                             <constraint firstItem="wsA-c1-jsQ" firstAttribute="leading" secondItem="Ubt-7j-8ZY" secondAttribute="leadingMargin" constant="25" id="aTh-TK-A1D"/>
+                            <constraint firstItem="Rdb-h0-hn7" firstAttribute="centerX" secondItem="zNg-g6-3gN" secondAttribute="centerX" id="eyV-Oh-vJm"/>
                             <constraint firstItem="BX3-nM-fjU" firstAttribute="centerX" secondItem="Ubt-7j-8ZY" secondAttribute="centerX" id="gEH-DI-l5y"/>
                             <constraint firstItem="Rdb-h0-hn7" firstAttribute="centerY" secondItem="agl-N8-iOR" secondAttribute="centerY" id="igS-eY-pXx"/>
+                            <constraint firstItem="agl-N8-iOR" firstAttribute="centerX" secondItem="jgC-dJ-D44" secondAttribute="centerX" id="oPa-1w-qDE"/>
                             <constraint firstItem="yfc-eu-4VZ" firstAttribute="top" secondItem="gfi-5C-mff" secondAttribute="bottom" constant="50" id="vWd-iP-w7S"/>
                             <constraint firstItem="Rdb-h0-hn7" firstAttribute="centerX" secondItem="yfc-eu-4VZ" secondAttribute="centerX" id="ylg-1L-fZD"/>
                         </constraints>
@@ -171,16 +193,22 @@
                                 <exclude reference="BX3-nM-fjU"/>
                                 <exclude reference="agl-N8-iOR"/>
                                 <exclude reference="Rdb-h0-hn7"/>
+                                <exclude reference="jgC-dJ-D44"/>
+                                <exclude reference="zNg-g6-3gN"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="6Pd-r2-O1u"/>
                                 <exclude reference="aTh-TK-A1D"/>
-                                <exclude reference="Xfc-Jm-83G"/>
-                                <exclude reference="vWd-iP-w7S"/>
                                 <exclude reference="Dff-Ui-eJz"/>
                                 <exclude reference="IT7-Kv-pGO"/>
+                                <exclude reference="oPa-1w-qDE"/>
+                                <exclude reference="Xfc-Jm-83G"/>
+                                <exclude reference="vWd-iP-w7S"/>
+                                <exclude reference="eyV-Oh-vJm"/>
                                 <exclude reference="igS-eY-pXx"/>
                                 <exclude reference="ylg-1L-fZD"/>
+                                <exclude reference="6pw-nP-l2n"/>
+                                <exclude reference="B67-HA-B8k"/>
                                 <exclude reference="gEH-DI-l5y"/>
                                 <exclude reference="BqA-eu-Sas"/>
                             </mask>
@@ -192,16 +220,22 @@
                                 <include reference="BX3-nM-fjU"/>
                                 <include reference="agl-N8-iOR"/>
                                 <include reference="Rdb-h0-hn7"/>
+                                <include reference="jgC-dJ-D44"/>
+                                <include reference="zNg-g6-3gN"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="6Pd-r2-O1u"/>
                                 <include reference="aTh-TK-A1D"/>
-                                <include reference="Xfc-Jm-83G"/>
-                                <include reference="vWd-iP-w7S"/>
                                 <include reference="Dff-Ui-eJz"/>
                                 <include reference="IT7-Kv-pGO"/>
+                                <include reference="oPa-1w-qDE"/>
+                                <include reference="Xfc-Jm-83G"/>
+                                <include reference="vWd-iP-w7S"/>
+                                <include reference="eyV-Oh-vJm"/>
                                 <include reference="igS-eY-pXx"/>
                                 <include reference="ylg-1L-fZD"/>
+                                <include reference="6pw-nP-l2n"/>
+                                <include reference="B67-HA-B8k"/>
                                 <include reference="gEH-DI-l5y"/>
                                 <include reference="BqA-eu-Sas"/>
                             </mask>
