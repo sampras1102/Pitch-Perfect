@@ -71,13 +71,12 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.connect(effect, to: audioEngine.outputNode, format: nil)
         
         let session = AVAudioSession.sharedInstance()
-        session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
-        session.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, error: nil)
+        session.setCategory(AVAudioSessionCategoryPlayback, error: nil)
         session.setActive(true, error: nil)
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: {
             println("audio playback complete")
-            session.setActive(false, error: nil)
+            //this does not reliably work.  Audio is still playing when this is called
         })
         audioEngine.startAndReturnError(nil)
         
@@ -145,6 +144,8 @@ class PlaySoundsViewController: UIViewController {
         if(audioEngine != nil){
             audioEngine.stop()
             audioEngine.reset()
+            let session = AVAudioSession.sharedInstance()
+            session.setActive(false, error: nil)
         }
     }
     

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0rI-v3-WTh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -42,7 +43,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="gkW-BK-W0W" secondAttribute="centerX" id="8se-Fr-wma"/>
                             <constraint firstAttribute="centerY" secondItem="ZVo-eH-gxv" secondAttribute="centerY" id="L9A-cy-M2K"/>
@@ -151,18 +152,18 @@
                                     <action selector="playDarthVaderAudio:" destination="REg-4R-6gu" eventType="touchUpInside" id="EEZ-dm-c5t"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgC-dJ-D44">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgC-dJ-D44">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Distortion">
+                                <state key="normal" image="distortion">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="playDistortedAudio:" destination="REg-4R-6gu" eventType="touchUpInside" id="JuT-rn-4gu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-g6-3gN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-g6-3gN">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Reverb">
+                                <state key="normal" image="reverb">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -170,7 +171,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="yfc-eu-4VZ" firstAttribute="centerX" secondItem="Ubt-7j-8ZY" secondAttribute="trailing" multiplier="0.75" id="1yl-or-iJm">
                                 <variation key="widthClass=compact" constant="0.0"/>
@@ -179,16 +180,16 @@
                             <constraint firstItem="jgC-dJ-D44" firstAttribute="centerY" secondItem="zNg-g6-3gN" secondAttribute="centerY" id="B67-HA-B8k"/>
                             <constraint firstItem="yfc-eu-4VZ" firstAttribute="centerY" secondItem="wsA-c1-jsQ" secondAttribute="centerY" id="FWy-h4-res"/>
                             <constraint firstItem="agl-N8-iOR" firstAttribute="centerX" secondItem="wsA-c1-jsQ" secondAttribute="centerX" id="IT7-Kv-pGO"/>
-                            <constraint firstItem="wsA-c1-jsQ" firstAttribute="centerY" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.25" id="MFM-Vt-Vpc">
+                            <constraint firstItem="wsA-c1-jsQ" firstAttribute="centerYWithinMargins" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.275" id="MFM-Vt-Vpc">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="jgC-dJ-D44" firstAttribute="centerY" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.75" id="Mlt-So-wAI">
+                            <constraint firstItem="jgC-dJ-D44" firstAttribute="centerYWithinMargins" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.725" id="Mlt-So-wAI">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="BX3-nM-fjU" firstAttribute="centerY" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.9" id="RY4-S8-qXh">
+                            <constraint firstItem="BX3-nM-fjU" firstAttribute="centerYWithinMargins" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.9" id="RY4-S8-qXh">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="agl-N8-iOR" firstAttribute="centerY" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.5" id="ZNh-5b-cMb">
+                            <constraint firstItem="agl-N8-iOR" firstAttribute="centerYWithinMargins" secondItem="6NT-me-E1v" secondAttribute="top" multiplier="0.5" id="ZNh-5b-cMb">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="Rdb-h0-hn7" firstAttribute="centerX" secondItem="zNg-g6-3gN" secondAttribute="centerX" id="eyV-Oh-vJm"/>
@@ -279,8 +280,10 @@
     <resources>
         <image name="chipmunk" width="100" height="100"/>
         <image name="darthvader" width="100" height="100"/>
+        <image name="distortion" width="98" height="98"/>
         <image name="fast" width="100" height="100"/>
         <image name="record" width="100" height="100"/>
+        <image name="reverb" width="98" height="98"/>
         <image name="slow" width="100" height="100"/>
         <image name="stop" width="50" height="50"/>
     </resources>
