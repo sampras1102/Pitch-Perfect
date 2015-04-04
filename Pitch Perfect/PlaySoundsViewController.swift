@@ -28,6 +28,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        // set up observer for "applicationWillEnterForeground"
         let app = UIApplication.sharedApplication()
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "applicationWillEnterForeground:",
@@ -36,16 +37,17 @@ class PlaySoundsViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        //delete old audio file
         if (receivedAudio != nil && receivedAudio.filePathUrl != nil) {
             //stop playing audio and delete the file
             stopAudioInternal()
+            //delete old audio file
             println("deleting \(receivedAudio.filePathUrl)")
             NSFileManager.defaultManager().removeItemAtURL(receivedAudio.filePathUrl, error: nil)
         }
     }
     
     func applicationWillEnterForeground(notification: NSNotification){
+        // called when app resumes
         println("app is now in foreground")
         if !(receivedAudio == nil || receivedAudio.filePathUrl == nil){
             var strPath = receivedAudio.filePathUrl.path
@@ -71,7 +73,7 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.connect(effect, to: audioEngine.outputNode, format: nil)
         
         let session = AVAudioSession.sharedInstance()
-        session.setCategory(AVAudioSessionCategoryPlayback, error: nil)
+        session.setCategory(AVAudioSessionCategoryPlayback, error: nil) // set category based on discussion in http://discussions.udacity.com/t/low-volume-on-device/13772
         session.setActive(true, error: nil)
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: {

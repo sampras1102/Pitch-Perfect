@@ -97,7 +97,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             
             //create a new audio session
             var session = AVAudioSession.sharedInstance()
-            session.setCategory(AVAudioSessionCategoryRecord, error: nil)
+            session.setCategory(AVAudioSessionCategoryRecord, error: nil) //set category based on discussion in http://discussions.udacity.com/t/low-volume-on-device/13772
             
             //record the audio
             audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
