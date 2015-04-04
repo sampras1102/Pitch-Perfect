@@ -83,7 +83,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="r7W-b1-lKo"/>
+                    <navigationItem key="navigationItem" title="Record" id="r7W-b1-lKo"/>
                     <connections>
                         <outlet property="microphoneSubText" destination="Id5-LH-g7A" id="Nds-Dx-sJV"/>
                         <outlet property="recordButton" destination="ZVo-eH-gxv" id="6i4-Aw-fis"/>

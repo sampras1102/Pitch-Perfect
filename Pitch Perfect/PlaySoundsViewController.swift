@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
+    //TODO: Investigate the completionHandler being called too soon.  Apparently it really is just buggy: http://discussions.udacity.com/t/avaudioplayernode-schedulefile-with-a-completionhandler/12872/2?u=chris_341164
+    //    A better way to deal with this would be to just start a timer and check to see if the audio engine is playing
     var audioEngine:AVAudioEngine!
     var audioFile:AVAudioFile!
     var receivedAudio:RecordedAudio! //model class that stores the audio file path and title
